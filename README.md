@@ -9,4 +9,4 @@ The collection of programs will be very limited to obscure programs I sometimes 
 
 This is a list of the programs currently available:
 
-    * TNoodle 1.2.3
+ * TNoodle 1.2.3
