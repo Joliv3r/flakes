@@ -10,11 +10,14 @@
   outputs = { self, tnoodle, flake-parts, ... } @ inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
 
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+      systems = [ "x86_64-linux" ];
 
       perSystem = { inputs', ... }: {
         apps = {
-          tnoodle = inputs'.tnoodle.apps.tnoodle;
+          tnoodle = inputs'.tnoodle.apps.default;
+        };
+        packages = {
+          tnoodle = inputs'.tnoodle.packages.default;
         };
       };
 
