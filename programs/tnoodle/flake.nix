@@ -6,12 +6,13 @@
   outputs = { self, nixpkgs }:
     let
       system = "x86_64-linux";
+      version = "1.2.3";
       pkgs = import nixpkgs { inherit system; };
       sharedLibraries = with pkgs; [ glib libappindicator ];
       libPath = pkgs.lib.makeLibraryPath sharedLibraries;
       java = pkgs.openjdk;
       tnoodle-jar = pkgs.fetchurl {
-        url = "https://github.com/thewca/tnoodle/releases/latest/download/TNoodle-WCA-1.2.3.jar";
+        url = "https://github.com/thewca/tnoodle/releases/latest/download/TNoodle-WCA-${version}.jar";
         hash = "sha256-6f9qFk7/7op+zcxcGBEdSqCdHeRxtx3iJIiaEoLZjNU=";
       };
       tnoodle = pkgs.writeShellApplication {
@@ -27,7 +28,7 @@
 
       apps.${system}.default = {
         type = "app";
-        program = "${tnoodle}/bin/tnoodle";  # must point to the binary, not the package dir
+        program = "${tnoodle}/bin/tnoodle";
       };
     };
 }
